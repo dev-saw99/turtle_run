@@ -1,5 +1,3 @@
-# Turtle-Run
-
 ![Turtle-Run Logo](logo.png)
 
 Turtle-Run is a command-line task scheduler application that allows you to manage and execute scheduled tasks efficiently. The application is designed to provide an easy way to start, stop, add, list, and remove tasks.
