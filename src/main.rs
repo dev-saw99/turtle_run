@@ -1,3 +1,10 @@
+/*
+ * SPDX-License-Identifier: Apache License 2.0
+ * More licensing information can be found in the project LICENSE file
+ * Author: Sonu Kumar Saw
+ * Email: sonukumarsaw66@gmail.com
+ */
+
 mod cli;
 mod handlers;
 mod logger;
