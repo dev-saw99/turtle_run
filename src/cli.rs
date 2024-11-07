@@ -47,6 +47,15 @@ pub enum Command {
     Remove(RemoveCommand),
     #[clap(about = "Run a task")]
     Run(RunCommand),
+    #[clap(about = "Configure the task scheduler")]
+    Configure(ConfigureCommand),
+}
+
+/// ### Represents a command to configure the task scheduler.
+#[derive(Parser, Debug)]
+pub struct ConfigureCommand {
+    #[clap(short, long, help = "The path to the config file")]
+    pub config: String,
 }
 
 /// ### Represents a command to start the task scheduler.

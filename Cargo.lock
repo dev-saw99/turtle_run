@@ -673,6 +673,8 @@ dependencies = [
  "log",
  "log4rs",
  "rand",
+ "serde",
+ "serde_yaml",
 ]
 
 [[package]]

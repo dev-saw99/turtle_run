@@ -41,7 +41,7 @@ fn monitor_file_updates() {
                 if let Some(new_modified_time) = is_file_updated(last_modified_time) {
                     last_modified_time = new_modified_time;
                     log::info!("Task file updated, reloading tasks");
-                    match utils::read_yaml_file(utils::get_task_yaml_file_path()) {
+                    match utils::read_yaml_file(&utils::get_task_yaml_file_path()) {
                         Ok(content) => {
                             log::info!("Task file content: {}", content);
                         }

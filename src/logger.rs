@@ -14,12 +14,18 @@ use log4rs::{
     encode::pattern::PatternEncoder,
 };
 
-fn get_log_file_path() -> String {
-    "/tmp/turtle_run/turtle_run.log".to_string()
+fn get_log_level(log_level: &String) -> LevelFilter {
+    match log_level.to_lowercase().as_str() {
+        "info" => LevelFilter::Info,
+        "debug" => LevelFilter::Debug,
+        "warn" => LevelFilter::Warn,
+        "error" => LevelFilter::Error,
+        _ => LevelFilter::Info,
+    }
 }
 
-pub fn init_file_logger() {
-    let file_path = get_log_file_path();
+pub fn init_file_logger(log_folder: &String, log_level: &String) {
+    let file_path = format!("{}/turtle_run.log", log_folder);
     let file_appender = FileAppender::builder()
         .encoder(Box::new(PatternEncoder::new(
             "{h({d(%Y-%m-%d %H:%M:%S%.3f)} {l} - {f}:{L} {m}{n})}",
@@ -29,14 +35,18 @@ pub fn init_file_logger() {
 
     let config = Config::builder()
         .appender(Appender::builder().build("file", Box::new(file_appender)))
-        .build(Root::builder().appender("file").build(LevelFilter::Info))
+        .build(
+            Root::builder()
+                .appender("file")
+                .build(get_log_level(log_level)),
+        )
         .unwrap();
 
     log4rs::init_config(config).unwrap();
 }
 
-pub fn init_file_and_console_logger() {
-    let file_path = get_log_file_path();
+pub fn init_file_and_console_logger(log_folder: &String, log_level: &String) {
+    let file_path = format!("{}/turtle_run.log", log_folder);
     let file_appender = FileAppender::builder()
         .encoder(Box::new(PatternEncoder::new(
             "{h({d(%Y-%m-%d %H:%M:%S%.3f)} {l} - {f}:{L} {m}{n})}",
@@ -57,7 +67,7 @@ pub fn init_file_and_console_logger() {
             Root::builder()
                 .appender("file")
                 .appender("console")
-                .build(LevelFilter::Info),
+                .build(get_log_level(log_level)),
         )
         .unwrap();
 

@@ -21,7 +21,7 @@ pub fn create_task_yaml_file(file_path: String) {
 }
 
 // function to read yaml file and return the content
-pub fn read_yaml_file(file_path: String) -> Result<String, String> {
+pub fn read_yaml_file(file_path: &String) -> Result<String, String> {
     let file_path = file_path.as_str();
     match fs::read_to_string(file_path) {
         Ok(content) => Ok(content),
