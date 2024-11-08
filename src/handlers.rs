@@ -3,6 +3,9 @@
  * More licensing information can be found in the project LICENSE file
  * Author: Sonu Kumar Saw
  * Email: sonukumarsaw66@gmail.com
+ *
+ * Copyright (c) 2024
+ * All rights reserved.
  */
 
 use crate::cli::{
@@ -12,18 +15,23 @@ use crate::cli::{
 
 use crate::configuration::Configuration;
 use crate::logger;
-use crate::observer;
+use crate::observer::Observer;
 
 #[derive(Debug)]
 pub struct Handlers {
-    configuration: Configuration,
+    observer: Observer,
+    pub configuration: Configuration,
 }
 
 impl Handlers {
     pub fn new() -> Handlers {
-        Self {
-            configuration: Configuration::default(),
-        }
+        let configuration = Configuration::default();
+        let handler = Handlers {
+            observer: Observer::new(configuration.clone()),
+            configuration: configuration,
+        };
+
+        handler
     }
 
     /// ### Handle the StartCommand
@@ -33,7 +41,7 @@ impl Handlers {
         log::debug!("Starting the observer thread");
 
         // spawn the observer thread
-        observer::spawn_observer();
+        Observer::spawn_observer(self.observer.clone().into());
     }
 
     /// ### Handle the StopCommand

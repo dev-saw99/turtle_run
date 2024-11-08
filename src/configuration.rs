@@ -1,9 +1,19 @@
+/*
+ * SPDX-License-Identifier: Apache License 2.0
+ * More licensing information can be found in the project LICENSE file
+ * Author: Sonu Kumar Saw
+ * Email: sonukumarsaw66@gmail.com
+ *
+ * Copyright (c) 2024
+ * All rights reserved.
+ */
+
 use crate::utils;
 use serde::{Deserialize, Serialize};
 /// Configuration struct
 ///
 /// This struct is used to store the configuration of the application
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct Configuration {
     // api version
     version: String,

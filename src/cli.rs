@@ -3,6 +3,9 @@
  * More licensing information can be found in the project LICENSE file
  * Author: Sonu Kumar Saw
  * Email: sonukumarsaw66@gmail.com
+ *
+ * Copyright (c) 2024
+ * All rights reserved.
  */
 
 use clap::{Parser, Subcommand};
